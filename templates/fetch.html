@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Fetch URL{% endblock %}
+{% block content %}
+<h1>Fetch Content</h1>
+<form method="post">
+    <label for="url">URL:</label>
+    <input type="text" id="url" name="url" size="60" placeholder="http://example.com">
+    <button type="submit">Fetch</button>
+</form>
+{% if content %}
+    <h2>Response</h2>
+    <pre>{{ content }}</pre>
+{% endif %}
+{% endblock %}
