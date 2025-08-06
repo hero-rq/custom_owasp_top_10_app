@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Ping Host{% endblock %}
+{% block content %}
+<h1>Ping Host</h1>
+<form method="post">
+    <label for="host">Host/IP:</label>
+    <input type="text" id="host" name="host">
+    <button type="submit">Ping</button>
+</form>
+{% if output %}
+    <h2>Output</h2>
+    <pre>{{ output }}</pre>
+{% endif %}
+{% endblock %}
