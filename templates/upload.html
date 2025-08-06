@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Upload File{% endblock %}
+{% block content %}
+<h1>File Upload</h1>
+<p>Select a file to upload and view its contents below.</p>
+<form method="post" enctype="multipart/form-data">
+    <input type="file" name="file" required>
+    <button type="submit">Upload</button>
+</form>
+{% if filename %}
+    <h2>Uploaded: {{ filename }}</h2>
+    <h3>File Contents</h3>
+    <pre>{{ file_content }}</pre>
+    <p>Direct link: <a href="{{ url_for('uploaded_file', filename=filename) }}">/uploads/{{ filename }}</a></p>
+{% endif %}
+{% endblock %}
