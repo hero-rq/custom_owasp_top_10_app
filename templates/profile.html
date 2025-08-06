@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Profile of {{ username }}{% endblock %}
+{% block content %}
+<h1>Profile: {{ username }}</h1>
+
+<h2>Message</h2>
+<p>{{ message|safe }}</p>
+
+{% if session.get('username') == username %}
+    <h3>Update your message</h3>
+    <form method="post">
+        <textarea name="message" rows="4" cols="60">{{ message }}</textarea><br>
+        <button type="submit">Save</button>
+    </form>
+{% else %}
+    <p>You must be logged in as {{ username }} to edit this message.</p>
+{% endif %}
+{% endblock %}
