@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Demo Site{% endblock %}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2rem; background-color: #f8f8f8; }
+        nav a { margin-right: 1rem; }
+        .container { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 0 4px rgba(0,0,0,0.1); }
+        .flash { padding: 0.5rem; margin-bottom: 1rem; border-radius: 4px; }
+        .flash.info { background-color: #d5e8d4; }
+        .flash.error { background-color: #f8cecc; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
+        th { background-color: #eee; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}">Home</a>
+        {% if session.get('username') %}
+            <span>Logged in as {{ session['username'] }}{% if session.get('is_admin') %} (admin){% endif %}</span>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+        <a href="{{ url_for('search') }}">Search</a>
+        <a href="{{ url_for('upload_file') }}">Upload</a>
+        <a href="{{ url_for('xml_parser') }}">XML</a>
+        <a href="{{ url_for('ping') }}">Ping</a>
+        <a href="{{ url_for('fetch') }}">Fetch</a>
+        <a href="{{ url_for('info') }}">Info</a>
+        {% if session.get('is_admin') %}<a href="{{ url_for('admin') }}">Admin</a>{% endif %}
+    </nav>
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
