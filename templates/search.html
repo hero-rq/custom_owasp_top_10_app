@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Search Users{% endblock %}
+{% block content %}
+<h1>Search Users</h1>
+<form method="post">
+    <label for="query">Username:</label>
+    <input type="text" id="query" name="query">
+    <button type="submit">Search</button>
+</form>
+{% if results is not none %}
+    <h2>Results</h2>
+    {% if results %}
+        <table>
+            <tr><th>Username</th><th>Password</th><th>Is Admin</th></tr>
+            {% for row in results %}
+                <tr><td>{{ row['username'] }}</td><td>{{ row['password'] }}</td><td>{{ row['is_admin'] }}</td></tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No users found.</p>
+    {% endif %}
+{% endif %}
+{% endblock %}
