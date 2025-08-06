@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}XML Parser{% endblock %}
+{% block content %}
+<h1>XML Parser</h1>
+<p>Submit XML data for parsing.</p>
+<form method="post">
+    <textarea name="xml_data" rows="10" cols="80" placeholder="&lt;?xml version='1.0'?&gt;&#10;&lt;root&gt;Example&lt;/root&gt;"></textarea><br>
+    <button type="submit">Parse</button>
+</form>
+{% if result %}
+    <h2>Result</h2>
+    <pre>{{ result }}</pre>
+{% endif %}
+{% endblock %}
