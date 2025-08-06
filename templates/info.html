@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Environment Info{% endblock %}
+{% block content %}
+<h1>Environment Information</h1>
+<h2>Current Working Directory</h2>
+<pre>{{ data['cwd'] }}</pre>
+<h2>Environment Variables</h2>
+<table>
+    <tr><th>Key</th><th>Value</th></tr>
+    {% for key, value in data['env'].items() %}
+        <tr><td>{{ key }}</td><td>{{ value }}</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}
